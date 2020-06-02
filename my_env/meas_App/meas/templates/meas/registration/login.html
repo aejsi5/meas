@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Measaro</title>
+    <meta charset="utf-8">
+    <!--Zur Aktivierung der Website den Meta-Tag Application Name wieder aktivieren-->
+    <meta name="application-name" content="Measaro" />
+    <!--Zur Aktivierung der Website den Meta-Tag Application Name wieder aktivieren-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/bootstrap/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/animation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/spinner.css' %}">
+
+    <!--
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon_32_32.png">
+		<link rel="apple-touch-icon" href="src/img/favicon_57.png" sizes="57x57">
+		<link rel="apple-touch-icon" href="src/img/favicon_72.png" sizes="72x72">
+		<link rel="apple-touch-icon" href="src/img/favicon_76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="src/img/favicon_114.png" sizes="114x114">
+		<link rel="apple-touch-icon" href="src/img/favicon_120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="src/img/favicon_144.png" sizes="144x144">
+		<link rel="apple-touch-icon" href="src/img/favicon_152.png" sizes="152x152">
+    -->
+
+    <!-- Start Cookie Plugin -->
+    <script type="text/javascript">
+        window.CookieHinweis_options = {
+            message: 'Wir nutzen Cookies, um Ihnen das Surfen auf unserer Website zu erleichtern. Für mehr Infos lesen Sie unsere Datenschutzerklärung ',
+            agree: 'Ok, verstanden',
+            learnMore: 'Mehr Infos',
+            link: '/datenschutz',
+            theme: 'dunkel-unten'
+        };
+    </script>
+    <script type="text/javascript" src="https://s3.eu-central-1.amazonaws.com/website-tutor/cookiehinweis/script.js
+		"></script>
+    <!-- Ende Cookie Plugin -->
+
+</head>
+
+<body>
+    <section class="login_section">
+        <h2 class="login_header">Anmelden</h2>
+        <form action="" class="login_form" method="POST">
+            <input type="hidden" id="csrf_token" value='{{ csrf_token }}'>
+            <input type="text" class="login_input" id="login_input_CN" name="CustomerNumber" required="required" placeholder="Kundennummer">
+            <input type="text" class="login_input" id="login_input_UN" name="UserName" required="required" placeholder="Username">
+            <input type="password" class="login_input" id="login_input_PW" name="Password" required="required" placeholder="Passwort">
+            <button type="submit" class="login_submit" id="id_login_submit">Anmelden</button>
+            <p class="login_forgot">
+                <a href="/password-reset/">Passwort vergessen?</a>
+            </p>
+        </form>
+    </section>
+
+
+<!--JS Import-->
+    <script src="{% static 'meas/jQuery/jquery-3.4.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/js.cookie.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/swal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/login.js' %}"></script>
+</body>
+
+</html>

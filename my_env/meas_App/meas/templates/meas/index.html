@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Measaro</title>
+    <meta charset="utf-8">
+    <!--Zur Aktivierung der Website den Meta-Tag Application Name wieder aktivieren-->
+    <meta name="application-name" content="Measaro" />
+    <!--Zur Aktivierung der Website den Meta-Tag Application Name wieder aktivieren-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/bootstrap/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/animation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'meas/css/spinner.css' %}">
+
+    <!--
+		<link rel="shortcut icon" type="image/png" href="src/img/favicon_32_32.png">
+		<link rel="apple-touch-icon" href="src/img/favicon_57.png" sizes="57x57">
+		<link rel="apple-touch-icon" href="src/img/favicon_72.png" sizes="72x72">
+		<link rel="apple-touch-icon" href="src/img/favicon_76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="src/img/favicon_114.png" sizes="114x114">
+		<link rel="apple-touch-icon" href="src/img/favicon_120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="src/img/favicon_144.png" sizes="144x144">
+		<link rel="apple-touch-icon" href="src/img/favicon_152.png" sizes="152x152">
+    -->
+
+    <!-- Start Cookie Plugin -->
+    <script type="text/javascript">
+        window.CookieHinweis_options = {
+            message: 'Wir nutzen Cookies, um Ihnen das Surfen auf unserer Website zu erleichtern. Für mehr Infos lesen Sie unsere Datenschutzerklärung ',
+            agree: 'Ok, verstanden',
+            learnMore: 'Mehr Infos',
+            link: '/datenschutz',
+            theme: 'dunkel-unten'
+        };
+    </script>
+    <script type="text/javascript" src="https://s3.eu-central-1.amazonaws.com/website-tutor/cookiehinweis/script.js
+		"></script>
+    <!-- Ende Cookie Plugin -->
+
+</head>
+
+<body>
+
+<div class="app-main scroll">
+    <div class="app-container scroll">
+        <div class="slidebar scroll">
+            <div class="slider-navbar scroll">
+                <div class="slider-header">
+                    <img src="{% static 'meas/img/logo.png' %}" alt="Logo">
+                </div>
+                <div class="slider-item-container scroll">
+                    <div class="slider-items scroll">
+                        <ul class="slider-menu">
+                            <li class="menu-header menu">
+                                <span>Hauptmenü</span>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link menu-sub">
+                                    <i class="li-ic" id="li-ic-order"></i>
+                                    <span>Auftragsanlage</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link">
+                                            <span class="sub-menu-text">Auftragsübersicht</span>
+                                        </a>
+                                    </li>
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link">
+                                            <span class="sub-menu-text">Neuer Auftrag</span>
+                                        </a>
+                                    </li>
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link">
+                                            <span class="sub-menu-text">Nicht zugeordnete Aufträge <span class="badge" id="nao">12</span></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link"  id="id_menu_scheduler">
+                                    <i class="li-ic" id="li-ic-appt"></i>
+                                    <span>Terminplaner</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <i class="li-ic" id="li-ic-meas"></i>
+                                    <span>Aufmaße</span>
+                                </a>
+                            </li>
+                            <li class="menu-header menu">
+                                <span>Stammdaten</span>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link menu-sub">
+                                    <i class="li-ic" id="li-ic-cust"></i>
+                                    <span>Kunden</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link" id="id_menu_customer">
+                                            <span class="sub-menu-text">Übersicht</span>
+                                        </a>
+                                    </li>
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link" id="id_menu_newcustomer">
+                                            <span class="sub-menu-text">Neuanlage</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <i class="li-ic" id="li-ic-cp"></i>
+                                    <span>Bauvorhaben</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link" id="id_menu_product">
+                                    <i class="li-ic" id="li-ic-products"></i>
+                                    <span>Produktkatalog</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link menu-sub">
+                                    <i class="li-ic" id="li-ic-empl"></i>
+                                    <span>Mitarbeiter</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link" id="id_menu_employee">
+                                            <span class="sub-menu-text">Übersicht</span>
+                                        </a>
+                                    </li>
+                                    <li class="sub-menu-li">
+                                        <a href="javascript:void(0)" class="sub-menu-link" id="id_menu_newemployee">
+                                            <span class="sub-menu-text">Neuanlage</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-header menu">
+                                <span>Einstellungen</span>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <i class="li-ic" id="li-ic-profil"></i>
+                                    <span>Profil</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link menu-sub">
+                                    <i class="li-ic" id="li-ic-user"></i>
+                                    <span>Benutzerverwaltung</span>
+                                </a>
+                            </li>
+                            <li class="menu-item menu">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <i class="li-ic" id="li-ic-holiday"></i>
+                                    <span>Feiertage</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app-main-container">
+            <div class="app-header">
+                <div class="app-header-main">
+                    <div class="toolbar">
+                        <div class="searchbar">
+                            <div class="search-form">
+                                <input type="search" class="search-control" placeholder="Ihre Suchanfrage">
+                                <button class="ic-search">
+                                    <i id="ic-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="ul-tools">
+                            <li class="li-tools">
+                                <div class="div-tools">
+                                    <span class="span-tools">
+                                        <span class="tool-ic">
+                                            <i class="i-ic" id="ic-home"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="li-tools">
+                                <div class="div-tools">
+                                    <span class="span-tools">
+                                        <span class="tool-ic">
+                                            <i class="i-ic" id="ic-inbox"></i>
+                                            <span class="tool-alert"></span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="li-tools">
+                                <div class="div-tools">
+                                    <span class="span-tools">
+                                        <span class="tool-ic">
+                                            <i class="i-ic" id="ic-logout"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <main>
+                <div class="app-data-wrapper">
+                    <div class="data-wrapper">
+                        <section class="data fade-in-bottom"></section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<!--JS Import-->
+    <script src="{% static 'meas/jQuery/jquery-3.4.1.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'meas/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/mustache.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/swal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/main.js' %}"></script>
+</body>
+
+</html>
