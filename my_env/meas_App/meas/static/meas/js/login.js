@@ -6,6 +6,9 @@ jQuery(document).ready(function ($) {
     $('#id_email').attr('placeholder', 'Email-Adresse');
     $('#id_new_password1').attr('placeholder', 'Neues Passwort');
     $('#id_new_password2').attr('placeholder', 'Bestätige Passwort');
+    $('label[for="id_email"]').hide();
+    $('label[for="id_new_password1"]').hide();
+    $('label[for="id_new_password2"]').hide();
     $("#id_login_submit").click(function(event){
         event.preventDefault();
         var CN = $('#login_input_CN').val();

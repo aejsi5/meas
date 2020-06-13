@@ -34,6 +34,9 @@ import os
 import datetime
 
 # Create your views here.
+def test(request):
+    return render(request, 'meas/test.html')
+
 @login_required(login_url='/login/')
 def index(request):
     return render(request, 'meas/index.html')

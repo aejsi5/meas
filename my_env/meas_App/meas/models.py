@@ -145,7 +145,7 @@ class Service(models.Model):
     Mandant = models.ForeignKey(Mandant, on_delete=models.CASCADE)
     Service_number = models.CharField('Arbeitspositions-Nummer', max_length=200, null=False, blank=False)
     Service_name = models.CharField('Arbeitspositionsbezeichnung', max_length=200, null=False, blank=False)
-    Service_duration = models.DecimalField('Zeiteinheiten',max_length=6, decimal_places=2)
+    Service_duration = models.DecimalField('Zeiteinheiten',max_digits= 6, decimal_places=2)
     Service_vf = models.DateTimeField('Gültig von', default=now)
     Service_vu = models.DateTimeField('Gültig bis', null=True, blank=True)
     Service_ia = models.DateTimeField('Hinzugefügt am', auto_now=True)
@@ -154,6 +154,16 @@ class Service(models.Model):
     def __str__(self):
         return self.Service_name
     
+    class Meta:
+        app_label ="meas"
+
+class Related_Service(models.Model):
+    Related_Service_id = models.AutoField('ID', primary_key=True)
+    Product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    Service_id = models.ForeignKey(Service, on_delete=models.CASCADE)
+    Related_Service_ia = models.DateTimeField('Hinzugefügt am', auto_now=True)
+    Related_Service_deleted = models.BooleanField('Gelöscht', default=False)
+
     class Meta:
         app_label ="meas"
     

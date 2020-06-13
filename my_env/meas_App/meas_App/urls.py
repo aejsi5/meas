@@ -30,12 +30,13 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('test/', views.test, name='test'),
     path('login/', views.loginview, name="login"),
     path('logout/',views.logoutview, name='logout'),
     path('terminplaner/',views.scheduler, name='scheduler'),
     path('mitarbeiter/', views.employeesview, name= 'employees'),
     path('mitarbeiter/edit/', views.employeeeditview, name="employeeedit"),
-    path('produkte/', views.productsview, name= 'products'),
+    path('material/', views.productsview, name= 'products'),
     path('kunden/', views.customersview, name='customers'),
     path('admin/', admin.site.urls),
     path('api/auth/', include('rest_framework.urls')),

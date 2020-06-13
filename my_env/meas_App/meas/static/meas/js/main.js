@@ -28,7 +28,7 @@ jQuery(document).ready(function ($) {
         window.location = domain + '/kunden'
     });
     $('#id_menu_product').click(function () {
-        window.location = domain + '/produkte'
+        window.location = domain + '/material'
     });
     $('#id_menu_newcustomer').click(function () {
         window.location = domain + '/kunden/edit/?customerid=new'

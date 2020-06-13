@@ -58,10 +58,12 @@ AUTH_USER_MODEL = 'meas.Meas_User'
 
 ROOT_URLCONF = 'meas_App.urls'
 
+TEMPLATES_PATH = os.path.join(BASE_DIR, 'meas\\templates\\meas')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_PATH,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
