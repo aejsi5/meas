@@ -31,6 +31,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('', views.index, name='index'),
     path('test/', views.test, name='test'),
+    path('auftraege/neu/', views.neworderview, name='neworder'),
     path('login/', views.loginview, name="login"),
     path('logout/',views.logoutview, name='logout'),
     path('terminplaner/',views.scheduler, name='scheduler'),

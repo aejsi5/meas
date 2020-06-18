@@ -18,6 +18,9 @@ jQuery(document).ready(function ($) {
     $('#id_menu_scheduler').click(function () {
         window.location = domain + '/terminplaner'
     });
+    $('#id_menu_neworder').click(function () {
+        window.location = domain + '/auftraege/neu'
+    });
     $('#id_menu_employee').click(function(){
         window.location = domain + '/mitarbeiter'
     });

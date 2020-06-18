@@ -41,6 +41,10 @@ def test(request):
 def index(request):
     return render(request, 'meas/index.html')
 
+@login_required(login_url='/login/')
+def neworderview(request):
+    return render(request, 'meas/order.html')
+
 @login_required(login_url='/login')
 def scheduler(request):
     return render(request, 'meas/index.html')

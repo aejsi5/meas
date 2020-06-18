@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% include "includes/head.html" %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'meas/timetable.js/dist/styles/timetablejs.css' %}">
+</head>
+
+<body>
+
+    <div class="app-main scroll">
+        <div class="app-container scroll">
+            {% include "includes/navi.html" %}
+            <div class="app-main-container">
+                {% include "includes/header_nav.html" %}
+                <main>
+                    <div class="app-data-wrapper">
+                        <section class="data fade-in-bottom">
+                            <div class="flex-row">
+                               <div class="order-head-wrapper">
+                                    <h2 class="order-head section-data-header">
+                                        Auftrag { content.Order_number } 
+                                    </h2>
+                               </div>
+                               <div class="order-state-wrapper">
+                                    <div class="state-container state-container-create">
+                                        <div class="state-cycle state-create state-active shake"></div>
+                                        <div class="state-label-div">
+                                            <span class="state-label" id="state-label-draft">Wird angelegt</span>
+                                            <span class="state-label state-label-hidden" id="state-label-created"">Angelegt</span>
+                                        </div>
+                                    </div>
+                                    <div class="state-transition">
+                                        <div class="state-transition-block"></div>
+                                    </div>
+                                    <div class="state-container state-container-schedule">
+                                        <div class="state-cycle state-schedule"></div>
+                                        <div class="state-label-div">
+                                            <span class="state-label state-label-hidden" id="state-label-notyetscheduled">Termin noch nicht geplant</span>
+                                            <span class="state-label state-label-hidden" id="state-label-scheduled">Termin vereinbart</span>
+                                        </div>
+                                    </div>
+                                    <div class="state-transition">
+                                        <div class="state-transition-block"></div>
+                                    </div>
+                                    <div class="state-container state-container-inprogress">
+                                        <div class="state-cycle state-inprogress"></div>
+                                        <div class="state-label-div">
+                                            <span class="state-label state-label-hidden" id="state-label-inprogress">Arbeiten begonnen</span>
+                                            <span class="state-label state-label-hidden" id="state-label-fullfilled">Arbeiten fertiggestellt</span>
+                                        </div>
+                                    </div>
+                                    <div class="state-transition">
+                                        <div class="state-transition-block"></div>
+                                    </div>
+                                    <div class="state-container state-container-complete">
+                                        <div class="state-cycle state-complete"></div>
+                                        <div class="state-label-div">
+                                            <span class="state-label state-label-hidden" id="state-label-completed">Abgeschlossen</span>
+                                        </div>
+                                    </div>
+                                    <div class="state-container state-container-cancel">
+                                        <div class="state-cycle state-cancel"></div>
+                                        <div class="state-label-div">
+                                            <span class="state-label state-label-hidden" id="state-label-canceled">Abgebrochen</span>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                            <div class="order-body-wrapper">
+                                <ul class="nav nav-tabs ul-order-body">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#kundendaten" id="kundendaten-tab" data-toggle="tab" role="tab" aria-controls="kundendaten" aria-selected="true">Kundendaten</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#auftrag" id="auftrag-tab" data-toggle="tab" role="tab" aria-controls="auftrag" aria-selected="false">Auftrag</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#termine" id="termine-tab" data-toggle="tab" role="tab" aria-controls="termine" aria-selected="false">Termine</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#dokumente" id="dokumente-tab" data-toggle="tab" role="tab" aria-controls="dokumente" aria-selected="false">Dokumente</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#aufmasse" id="aufmasse-tab" data-toggle="tab" role="tab" aria-controls="aufmasse" aria-selected="false">Aufmaße</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sonstiges</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#action" id="action-tab" data-toggle="tab" role="tab" aria-controls="aufmasse" aria-selected="false">Action</a>
+                                        </div>
+                                </ul>
+                                <div class="order-body-content-div tab-content" id="Tabordercontent">
+                                    <div class="tab-pane fade show active" id="kundendaten" role="tabpanel" aria-labelledby="kundendaten-tab">Kundendaten</div>
+                                    <div class="tab-pane fade" id="auftrag" role="tabpanel" aria-labelledby="auftrag-tab">Auftrag</div>
+                                    <div class="tab-pane fade" id="termine" role="tabpanel" aria-labelledby="termine-tab">Termine</div>
+                                    <div class="tab-pane fade" id="dokumente" role="tabpanel" aria-labelledby="dokumente-tab">Dokumente</div>
+                                    <div class="tab-pane fade" id="aufmasse" role="tabpanel" aria-labelledby="aufmasse-tab">Aufmasse</div>
+                                    <div class="tab-pane fade" id="action" role="tabpanel" aria-labelledby="action-tab">Action</div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+    <!--JS Import-->
+    {% load static %}
+    <script src="{% static 'meas/jQuery/jquery-3.4.1.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'meas/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/swal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/js/order.js' %}"></script>
+    <script type="text/javascript" src="{% static 'meas/timetable.js/dist/scripts/timetable.js' %}"></script>
+</body>
+
+</html>

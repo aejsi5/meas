@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+import datetime
 
 # Create your models here.
 class Currency(models.Model):
@@ -91,7 +92,7 @@ class Customer(models.Model):
 class Customer_Project(models.Model):
     CP_id = models.AutoField('ID', primary_key=True)
     Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    CP_number = models.CharField('Bauvorhaben', max_length=10)
+    CP_name = models.CharField('Bauvorhaben', max_length=50)
     CP_address = models.CharField('Adresse', max_length=200)
     CP_address_add = models.CharField('Adresszusatz', max_length=200, blank=True, null=True)
     CP_zip = models.CharField('PLZ', max_length=5)
@@ -101,7 +102,7 @@ class Customer_Project(models.Model):
     CP_contact_mail = models.EmailField('Ansprechpartner E-Mail', blank=True, null=True)
 
     def __str__(self):
-        return self.CP_number
+        return self.CP_name
 
     class Meta:
         app_label = "meas"
@@ -166,24 +167,66 @@ class Related_Service(models.Model):
 
     class Meta:
         app_label ="meas"
-    
+
+def create_order_number():
+        last_order = Order.objects.all().order_by('Order_id').last()
+        year = str(datetime.datetime.today().year)
+        if not last_order:
+            return "AU" + year + "-" + "271115"
+        order_no = last_order.Order_number
+        order_int = int(order_no.split("-")[-1])
+        new_order_int = order_int + 1
+        new_order_no = 'AU' + year + "-" + str(new_order_int)
+        return new_order_no
+
 class Order(models.Model):
+    STATUS_CREATED = 0
+    STATUS_NOTYETSCHEDULED = 1
+    STATUS_SCHEDULED = 2
+    STATUS_INPROGRESS = 3
+    STATUS_FULLFILLED = 4
+    STATUS_COMPLETED = 5
+    STATUS_CANCELLED = 6
+    STATUS_CHOICES = (
+        (STATUS_CREATED, 'created'),
+        (STATUS_NOTYETSCHEDULED, 'not yet scheduled'),
+        (STATUS_SCHEDULED, 'scheduled'),
+        (STATUS_INPROGRESS, 'in progress'),
+        (STATUS_FULLFILLED, 'fullfilld'),
+        (STATUS_COMPLETED, 'completed'),
+        (STATUS_CANCELLED, 'cancelled'),
+    ) 
+
     Order_id = models.AutoField('ID', primary_key=True)
     Mandant = models.ForeignKey(Mandant, on_delete=models.CASCADE)
-    Employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     CP = models.ForeignKey(Customer_Project, on_delete=models.CASCADE)
-    Order_number = models.CharField('Auftragsnummer', max_length=200)
+    Order_number = models.CharField('Auftragsnummer', max_length=200, default=create_order_number)
+    Order_status = models.SmallIntegerField('Auftragsstatus',choices=STATUS_CHOICES, default=STATUS_CREATED)
     Order_creation_date = models.DateTimeField('Anlagedatum', auto_now_add=True)
     Order_input_channel = models.CharField(max_length=200, null=True, blank=True)
     Order_desc = models.CharField(max_length=254, null = True, blank = True)
     Order_date_sch = models.DateField('Auftragsdatum geplant', null = True, blank = True)
-    Order_time_sch = models.TimeField('Auftragsuhrzeit geplant', null=True, blank=True)
     Order_date_act = models.DateField('Auftragsdatum  tatsächlich', null = True, blank = True)
-    Order_time_act = models.TimeField('Auftragsuhrzeit tatsächlich', null=True, blank=True)
     Order_provision_date = models.DateField('Bereitstellungsdatum', null=True, blank=True)
     Order_provision_time = models.TimeField('Bereitstellungsuhrzeit', null=True, blank=True)
     Order_accepted = models.BooleanField('Angenommen', default=False)
+
+    def __str__(self):
+        return self.Order_number
+    
+    class Meta:
+        app_label ="meas"
+        
+class Appointment(models.Model):
+    Appointment_id = models.AutoField('ID', primary_key=True)
+    Order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    Employees_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    Appointment_start = models.DateTimeField('Start', null=False)
+    Appointment_end = models.DateTimeField('Ende', null=False)
+    Appointment_note = models.CharField(max_length=254, null= True, blank=True)
+    Appointment_ia = models.DateTimeField('Hinzugefügt am', auto_now=True)
+    Appointment_deleted = models.BooleanField('Gelöscht', default=False)
 
     def __str__(self):
         return self.Order_number
